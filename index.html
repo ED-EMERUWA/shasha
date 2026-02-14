@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+<style>
+/* Heart CSS */
+.heart {
+  z-index: 100;
+  position: fixed;
+  width: 200px;  /* doubled from 100px */
+  height: 180px; /* doubled from 90px */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.heart:before,
+.heart:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 104px;  /* doubled from 52px */
+  height: 160px; /* doubled from 80px */
+  background: #ff69b4;
+  border-radius: 100px 100px 0 0; /* doubled from 50px */
+}
+
+.heart:before {
+  left: 100px; /* doubled from 50px */
+  transform: rotate(-45deg);
+  transform-origin: 0 100%;
+}
+
+.heart:after {
+  left: 0;
+  transform: rotate(45deg);
+  transform-origin: 100% 100%;
+}
+
+.heart-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 101;
+  color: white;
+  font-weight: bold;
+  font-size: 12.5px; /* doubled from 14px */
+  text-align: center;
+  white-space: nowrap;
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); }
+  25% { transform: translate(-50%, -50%) scale(1.1); }
+  50% { transform: translate(-50%, -50%) scale(1); }
+}
+
+.heart.beating {
+  animation: heartbeat 1.5s infinite;
+}
+
+  .hidebtn {
+    transform: scale(2.5);
+    opacity: 0;
+    filter: blur(6px);
+    transition: all 1.0s ease;
+    pointer-events: none;  /* Add this line */
+  }
+
+  .showbtn{
+    opacity: 1;
+    filter: blur(0);
+    transition: opacity 1s ease-in-out;
+    transition: all 2.0s ease;
+  }
+</style>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+  <section class="h-screen w-screen flex justify-center items-center">
+    <div id="mainDiv" class="p-8 rounded-lg bg-gradient-to-br from-pink-300 to-pink-500 w-full text-center">
+
+      <h3 class="text-white text-2xl pt-24">Well Hello gorgeous</h3>
+      <p class="text-white pt-4 text-lg" id="message">
+        I have something to tell you. All you need to do is click the button
+      </p>
+
+      <button id="glasses" class="hidden bg-white text-pink-500 px-6 py-2 rounded-full mt-4 hover:bg-pink-100 transition duration-300" onclick="GlassesOn">YESSSS</button>
+
+      <button id="realbtn" class="hidden  bg-white text-pink-500 px-6 py-2 rounded-full mt-4 hover:bg-pink-100 transition duration-300">
+        Over here
+      </button>
+      <button id="fakebtn" class="bg-white text-pink-500 px-6 py-2 rounded-full mt-4 hover:bg-pink-100 transition duration-300">
+        Get Started
+      </button>
+
+    </div>
+
+    <!-- Heart HTML -->
+<!-- Heart HTML (starts hidden) -->
+<div class="heart hidden" id="heartDiv">
+  <span class="heart-text ">Happy Valentine's Day!</span>
+</div>
+  </section>
+
+  <script>
+    const fake = document.getElementById('fakebtn');
+    const real = document.getElementById('realbtn');
+    const message = document.getElementById('message');
+    const glasses = document.getElementById('glasses');
+
+    const ButtonChange = async () => {
+      fake.classList.add('hidebtn');
+      await new Promise(r => setTimeout(r, 1000));
+
+      message.textContent = "Where are you clicking, do you have your glasses on?";
+ message.classList.add('text-3xl');
+       await new Promise(r => setTimeout(r, 2000));
+       real.classList.remove('hidden');
+      
+      real.classList.add('showbtn');
+      
+
+    }
+
+
+    // Add event listener instead of inline onclick
+    fake.addEventListener('click', ButtonChange);
+    real.addEventListener('click', () => {
+   document.getElementById('mainDiv').classList.add('hidden');
+  
+  const heartDiv = document.getElementById('heartDiv');
+  heartDiv.classList.remove('hidden');
+  heartDiv.classList.add('beating');
+});
+
+  </script>
+</body>
+</html>
