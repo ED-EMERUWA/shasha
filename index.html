@@ -3,142 +3,309 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-<style>
-/* Heart CSS */
-.heart {
-  z-index: 100;
-  position: fixed;
-  width: 200px;  /* doubled from 100px */
-  height: 180px; /* doubled from 90px */
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  padding-bottom: 10px; 
-}
+  <title>Valentine's Day Surprise 💖</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;600;700&display=swap');
 
-.heart:before,
-.heart:after {
-  content: "";
-  position: absolute;
-  top: 0;
-  width: 104px;  /* doubled from 52px */
-  height: 160px; /* doubled from 80px */
-  background: #ff69b4;
-  border-radius: 100px 100px 0 0; /* doubled from 50px */
-}
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-.heart:before {
-  left: 100px; /* doubled from 50px */
-  transform: rotate(-45deg);
-  transform-origin: 0 100%;
-}
+    body {
+      font-family: 'Quicksand', sans-serif;
+      overflow: hidden;
+    }
 
-.heart:after {
-  left: 0;
-  transform: rotate(45deg);
-  transform-origin: 100% 100%;
-}
+    /* Subtle pink gradient background */
+    .gradient-bg {
+      background: linear-gradient(135deg, #ffc0cb 0%, #ffb3d9 100%);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
 
-.heart-text {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 101;
-  color: white;
-  font-weight: bold;
-  font-size: 12px; /* doubled from 14px */
-  text-align: center;
-  white-space: nowrap;
-}
+    /* Main container */
+    .main-card {
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 10px 40px rgba(255, 105, 180, 0.15);
+      padding: 3rem 2.5rem;
+      max-width: 480px;
+      width: 100%;
+      text-align: center;
+    }
 
-@keyframes heartbeat {
-  0%, 100% { transform: translate(-50%, -50%) scale(1); }
-  25% { transform: translate(-50%, -50%) scale(1.1); }
-  50% { transform: translate(-50%, -50%) scale(1); }
-}
+    /* Typography */
+    .title {
+      color: #ff69b4;
+      font-size: 2.2rem;
+      margin-bottom: 1.5rem;
+      font-weight: 600;
+    }
 
-.heart.beating {
-  animation: heartbeat 1.5s infinite;
-}
+    .message {
+      color: #666;
+      font-size: 1.1rem;
+      line-height: 1.7;
+      margin-bottom: 2rem;
+      font-weight: 400;
+      transition: all 0.4s ease;
+    }
 
-  .hidebtn {
-    transform: scale(2.5);
-    opacity: 0;
-    filter: blur(6px);
-    transition: all 1.0s ease;
-    pointer-events: none;  /* Add this line */
-  }
+    /* Button styles */
+    .btn {
+      padding: 14px 40px;
+      font-size: 1rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      background: white;
+      color: #ff69b4;
+      box-shadow: 0 4px 15px rgba(255, 105, 180, 0.2);
+      transition: all 0.3s ease;
+      font-family: 'Quicksand', sans-serif;
+    }
 
-  .showbtn{
-    opacity: 1;
-    filter: blur(0);
-    transition: opacity 1s ease-in-out;
-    transition: all 2.0s ease;
-  }
-</style>
-  <script src="https://cdn.tailwindcss.com"></script>
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(255, 105, 180, 0.3);
+      background: #fff5f8;
+    }
+
+    .btn:active {
+      transform: translateY(0);
+    }
+
+    /* Hide button animation */
+    .hidebtn {
+      transform: scale(2);
+      opacity: 0;
+      filter: blur(6px);
+      transition: all 1.0s ease;
+      pointer-events: none;
+    }
+
+    /* Show button animation */
+    .showbtn {
+      opacity: 1;
+      filter: blur(0);
+      transform: scale(1);
+      transition: all 1.2s ease;
+    }
+
+    /* Heart container */
+    .heart-container {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 1000;
+    }
+
+    .heart {
+      position: relative;
+      width: 200px;
+      height: 180px;
+    }
+
+    .heart:before,
+    .heart:after {
+      content: "";
+      position: absolute;
+      top: 0;
+      width: 104px;
+      height: 160px;
+      background: #ff69b4;
+      border-radius: 100px 100px 0 0;
+    }
+
+    .heart:before {
+      left: 100px;
+      transform: rotate(-45deg);
+      transform-origin: 0 100%;
+    }
+
+    .heart:after {
+      left: 0;
+      transform: rotate(45deg);
+      transform-origin: 100% 100%;
+    }
+
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1); }
+      15% { transform: scale(1.1); }
+      30% { transform: scale(1); }
+    }
+
+    .heart.beating {
+      animation: heartbeat 1.8s ease-in-out infinite;
+    }
+
+    .heart-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 101;
+      color: white;
+      font-size: 1.4rem;
+      text-align: center;
+      width: 200px;
+      font-weight: 600;
+    }
+
+    /* Slide up animation */
+    .slide-up {
+      animation: slideUpOut 0.6s ease forwards;
+    }
+
+    @keyframes slideUpOut {
+      to {
+        opacity: 0;
+        transform: translateY(-50px);
+      }
+    }
+
+    /* Heart appear animation */
+    .heart-appear {
+      animation: heartAppear 0.8s ease forwards;
+    }
+
+    @keyframes heartAppear {
+      0% {
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 0;
+      }
+      100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 640px) {
+      .main-card {
+        padding: 2rem 1.5rem;
+      }
+
+      .title {
+        font-size: 1.8rem;
+      }
+
+      .message {
+        font-size: 1rem;
+      }
+
+      .btn {
+        padding: 12px 32px;
+        font-size: 0.95rem;
+      }
+
+      .heart {
+        width: 160px;
+        height: 144px;
+      }
+
+      .heart:before,
+      .heart:after {
+        width: 83px;
+        height: 128px;
+      }
+
+      .heart:before {
+        left: 80px;
+      }
+
+      .heart-text {
+        font-size: 1.2rem;
+        width: 160px;
+      }
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
 </head>
 <body>
-  <section class="h-screen w-screen flex justify-center items-center">
-    <div id="mainDiv" class="p-8 rounded-lg bg-gradient-to-br from-pink-300 to-pink-500 w-full text-center">
-
-      <h3 class="text-white text-2xl pt-24">Well Hello gorgeous</h3>
-      <p class="text-white pt-4 text-lg" id="message">
-        I have something to tell you. All you need to do is click the button
+  <section class="gradient-bg">
+    
+    <!-- Main Card -->
+    <div class="main-card" id="mainDiv">
+      <h1 class="title">Well Hello Gorgeous 💕</h1>
+      <p class="message" id="message">
+        I have something special to tell you. All you need to do is click the button below...
       </p>
 
-      <button id="glasses" class="hidden bg-white text-pink-500 px-6 py-2 rounded-full mt-4 hover:bg-pink-100 transition duration-300" onclick="GlassesOn">YESSSS</button>
-
-      <button id="realbtn" class="hidden mx-auto bg-white text-pink-500 px-6 py-2 rounded-full mt-4 hover:bg-pink-100 transition duration-300">
-        Over here
-      </button>
-      <button id="fakebtn" class="bg-white text-pink-500 px-6 py-2 rounded-full mt-4 hover:bg-pink-100 transition duration-300">
-        Get Started
+      <!-- Fake Button -->
+      <button id="fakebtn" class="btn">
+        Click Me! 💖
       </button>
 
+      <!-- Real Button (hidden initially) -->
+      <button id="realbtn" class="btn hidden">
+        No, Over Here! 👀
+      </button>
     </div>
 
-    <!-- Heart HTML -->
-<!-- Heart HTML (starts hidden) -->
-<div class="heart hidden " id="heartDiv">
-  <span class="heart-text ">Happy Valentine's Day!</span>
-</div>
+    <!-- Heart Container (hidden initially) -->
+    <div class="heart-container hidden" id="heartContainer">
+      <div class="heart" id="heartDiv">
+        <span class="heart-text">Happy Valentine's Day! 💝</span>
+      </div>
+    </div>
   </section>
 
   <script>
     const fake = document.getElementById('fakebtn');
     const real = document.getElementById('realbtn');
     const message = document.getElementById('message');
-    const glasses = document.getElementById('glasses');
+    const mainDiv = document.getElementById('mainDiv');
+    const heartContainer = document.getElementById('heartContainer');
+    const heartDiv = document.getElementById('heartDiv');
 
+    // Button click handlers
     const ButtonChange = async () => {
+      // Hide fake button
       fake.classList.add('hidebtn');
-      fake.classList.add('hidden');
+      
       await new Promise(r => setTimeout(r, 1000));
+      fake.classList.add('hidden');
 
-      message.textContent = "Where are you clicking jellybean, do you have your glasses on?";
- message.classList.add('text-3xl');
-       await new Promise(r => setTimeout(r, 2000));
-       real.classList.remove('hidden');
+      // Change message
+      message.textContent = "Where are you clicking jellybean, do you have your glasses on? 👓";
+      message.style.fontSize = '1.25rem';
+      message.style.fontWeight = '600';
+      message.style.color = '#ff1493';
       
+      await new Promise(r => setTimeout(r, 2000));
+      
+      // Show real button
+      real.classList.remove('hidden');
       real.classList.add('showbtn');
+    };
+
+    const showHeart = async () => {
+      // Slide up main card
+      mainDiv.classList.add('slide-up');
       
+      await new Promise(r => setTimeout(r, 600));
+      mainDiv.classList.add('hidden');
+      
+      // Show heart
+      heartContainer.classList.remove('hidden');
+      heartContainer.classList.add('heart-appear');
+      heartDiv.classList.add('beating');
+    };
 
-    }
-
-
-    // Add event listener instead of inline onclick
+    // Event listeners
     fake.addEventListener('click', ButtonChange);
-    real.addEventListener('click', () => {
-   document.getElementById('mainDiv').classList.add('hidden');
-  
-  const heartDiv = document.getElementById('heartDiv');
-  heartDiv.classList.remove('hidden');
-  heartDiv.classList.add('beating');
-});
-
+    real.addEventListener('click', showHeart);
   </script>
 </body>
 </html>
