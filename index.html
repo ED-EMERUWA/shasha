@@ -48,7 +48,7 @@
   z-index: 101;
   color: white;
   font-weight: bold;
-  font-size: 12.5px; /* doubled from 14px */
+  font-size: 12px; /* doubled from 14px */
   text-align: center;
   white-space: nowrap;
 }
@@ -91,7 +91,7 @@
 
       <button id="glasses" class="hidden bg-white text-pink-500 px-6 py-2 rounded-full mt-4 hover:bg-pink-100 transition duration-300" onclick="GlassesOn">YESSSS</button>
 
-      <button id="realbtn" class="hidden  bg-white text-pink-500 px-6 py-2 rounded-full mt-4 hover:bg-pink-100 transition duration-300">
+      <button id="realbtn" class="hidden mx-auto bg-white text-pink-500 px-6 py-2 rounded-full mt-4 hover:bg-pink-100 transition duration-300">
         Over here
       </button>
       <button id="fakebtn" class="bg-white text-pink-500 px-6 py-2 rounded-full mt-4 hover:bg-pink-100 transition duration-300">
@@ -115,9 +115,10 @@
 
     const ButtonChange = async () => {
       fake.classList.add('hidebtn');
+      fake.classList.add('hidden');
       await new Promise(r => setTimeout(r, 1000));
 
-      message.textContent = "Where are you clicking, do you have your glasses on?";
+      message.textContent = "Where are you clicking jellybean, do you have your glasses on?";
  message.classList.add('text-3xl');
        await new Promise(r => setTimeout(r, 2000));
        real.classList.remove('hidden');
